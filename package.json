@@ -1,6 +1,6 @@
 {
   "name": "nuxt-fathom",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Fathom analytics Nuxt module",
   "repository": "https://github.com/valgeirb/nuxt-fathom",
   "license": "MIT",

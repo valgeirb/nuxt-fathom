@@ -1,3 +1,5 @@
+![Nuxt Fathom module](./.github/hero.png)
+
 # Nuxt Fathom
 
 [![npm version][npm-version-src]][npm-version-href]
