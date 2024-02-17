@@ -3,7 +3,7 @@ import type { EventOptions, PageViewOptions } from "fathom-client";
 
 function safeFathomCall<T extends (...args: any[]) => any>(fathomFunction: T) {
   return (...args: Parameters<T>) => {
-    if (!process.server) {
+    if (import.meta.client) {
       return fathomFunction(...args);
     }
   };
