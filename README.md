@@ -20,14 +20,7 @@
 ## Setup
 
 ```bash
-# pnpm
-pnpm add -D nuxt-fathom
-
-# npm
-npm i -D nuxt-fathom
-
-# yarn
-yarn add -D nuxt-fathom
+npx nuxi@latest module add fathom-analytics
 ```
 
 ## Basic Usage
