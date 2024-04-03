@@ -17,7 +17,13 @@
 - 🦾 SSR-ready
 - 📂 [`.env` file support](#configuration)
 
-## Setup
+## Installation
+
+Running the following command will:
+
+- Install the module as a dependency using your package manager.
+- Add it to your `package.json` file.
+- Update your `nuxt.config` file.
 
 ```bash
 npx nuxi@latest module add fathom-analytics
@@ -25,7 +31,7 @@ npx nuxi@latest module add fathom-analytics
 
 ## Basic Usage
 
-Add `nuxt-fathom` to the `modules` section of your Nuxt configuration and provide your Fathom site ID.
+Provide your Fathom site ID in your `nuxt.config` file.
 
 ```ts
 // `nuxt.config.ts`
