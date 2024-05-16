@@ -22,7 +22,7 @@ export default defineNuxtPlugin(() => {
     watch(
       () => route.path,
       () => {
-        trackPageview();
+        trackPageview({ url: route.fullPath });
       }
     );
   }
