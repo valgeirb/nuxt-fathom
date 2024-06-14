@@ -21,7 +21,7 @@ export default defineNuxtModule<ModuleOptions>({
     name: "fathom",
     configKey: "fathom",
     compatibility: {
-      nuxt: "^3.0.0",
+      nuxt: ">=3.0.0",
     },
   },
   defaults: {
