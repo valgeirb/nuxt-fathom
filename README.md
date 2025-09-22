@@ -46,7 +46,7 @@ export default defineNuxtConfig({
 
 > Tip: you can also use an [.env file](#runtime-config) instead of a `fathom` key.
 
-Done! Fathom Analytics will now run in your application's client.
+Done! Fathom Analytics will now run in your application's client and automatically track page views.
 
 ## Configuration
 
@@ -94,7 +94,7 @@ With this setup, you can omit the `fathom` key in your Nuxt configuration if you
 
 ## Composables
 
-As with other composables in the Nuxt 3 ecosystem, they are auto-imported and can be used in your application's components.
+As with other composables in the Nuxt ecosystem, they are auto-imported and can be used in your application's components.
 
 ### `useFathom`
 
