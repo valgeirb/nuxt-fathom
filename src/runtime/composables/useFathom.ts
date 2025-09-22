@@ -1,35 +1,35 @@
 import * as fathom from "fathom-client";
-import type { EventOptions, PageViewOptions } from "fathom-client";
 
-function safeFathomCall<T extends (...args: any[]) => any>(fathomFunction: T) {
-  return (...args: Parameters<T>) => {
-    if (import.meta.client) {
-      return fathomFunction(...args);
-    }
+function safeFathomCall<T extends (...args: any[]) => any>(fn: T) {
+  return (...args: Parameters<T>): ReturnType<T> | undefined => {
+    if (import.meta.client) return fn(...args);
   };
 }
 
-type FathomAPI = {
-  blockTrackingForMe: () => void;
-  enableTrackingForMe: () => void;
-  isTrackingEnabled: () => boolean;
-  setSite: (id: string) => void;
-  trackEvent: (eventName: string, opts?: EventOptions) => void;
-  trackPageview: (opts?: PageViewOptions) => void;
-};
+// Only allow function keys from the module
+type FunctionKeys<T> = {
+  [K in keyof T]: T[K] extends (...a: any[]) => any ? K : never;
+}[keyof T];
 
-const fathomFunctions = [
+const fathomKeys = [
   "blockTrackingForMe",
   "enableTrackingForMe",
   "isTrackingEnabled",
   "setSite",
   "trackEvent",
   "trackPageview",
-] as const;
+] as const satisfies readonly FunctionKeys<typeof fathom>[];
+
+type FathomKeys = (typeof fathomKeys)[number];
+type Wrap<T> = T extends (...a: infer A) => infer R
+  ? (...a: A) => R | undefined
+  : never;
+
+type FathomAPI = { [K in FathomKeys]: Wrap<(typeof fathom)[K]> };
 
 export function useFathom(): FathomAPI {
-  return fathomFunctions.reduce((api, functionName) => {
-    api[functionName] = safeFathomCall(fathom[functionName]);
-    return api;
-  }, {} as FathomAPI);
+  const entries = fathomKeys.map(
+    (k) => [k, safeFathomCall(fathom[k])] as const
+  );
+  return Object.fromEntries(entries) as FathomAPI;
 }
